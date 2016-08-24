@@ -1,0 +1,82 @@
+---
+title: "MFE Programming Workshop"
+author: "Brett Dunn"
+date: "Fall 2016"
+output:
+  beamer_presentation:
+    includes:
+      in_header: slide_header.tex
+    keep_tex: true
+subtitle: Week 1
+slide_level: 2
+---
+
+# Goals
+- Learn to program in R.
+
+- What does programming mean?
+    - Language syntax
+    - Debugging
+    - Finding solutions
+    - Translating math to code
+  
+- This is just the beginning, you'll develop these skills throughout the program.
+
+# R vs C++
+ 
+- Both are useful and you will use both in the MFE program
+- R is a high-level language
+    - Low programmer time
+    - It is a great tool for data munging, statistics, regressions, ect.
+    - However, certain tasks in R can be slow (e.g. loops) 
+- C++ is very fast, but it takes longer to write programs
+- We can use both together!
+- Write most of the program in R, and convert the slow parts of the program to C++
+
+# Structure
+- I will talk for 30-60 minutes at the beginning of each class
+- For the remainder of the time you will break into groups and work on
+  programming tasks 
+- Tasks are designed to introduce you to the building blocks that will
+  be used for course assignments throughout the MFE program
+- This course is a programming course with emphasis on methods for
+  finance:
+    - You will see finance terms and math
+    - You \emph{may} not understand all of the finance, but you will
+    learn it throughout the program
+- The key skills will be translating mathematical algorithms into code
+  and developing the ability to find helpful resources
+
+# Questions
+\begin{center}
+\Large Any questions before we start?
+\end{center}
+
+# R Resources
+- R Cookbook by Paul Teetor (free at [UCLA LearnIT](https://learnit.ucla.edu/))
+- R for Everyone by Jared P. Lander
+- The Art of R Programming by Norman Matloff
+- Software for Data Analysis by John Chambers
+- [Use R!](http://link.springer.com/bookseries/6991) Springer series
+    - FYI: Many Springer textbooks are just $25 through <http://link.springer.com/>.  You need to be on campus or signed into the UCLA VPN. You can download the pdfs for free.
+- O'Reilly R Books (free at [UCLA LearnIT](https://learnit.ucla.edu/))
+- Built in documentation!
+    - `?funcname`
+- Data science courses on [Coursera](https://www.coursera.org/specializations/jhu-data-science) 
+- Google
+
+# R Environment
+- First, you need an R distribution
+    - I recommend Microsoft R Open
+    - <https://mran.revolutionanalytics.com/download/>
+- Second, you need an integrated development environment (IDE) for R
+    - [R Studio](https://www.rstudio.com/products/rstudio/download/preview/) is a fantastic environment to interact with R
+    - Other options:
+        - [R Tools for Visual Studio](https://www.visualstudio.com/en-us/features/rtvs-vs.aspx) if you use Visual Studio
+        - [Emacs Speaks Statistics (ESS)](http://ess.r-project.org/) if you use Emacs
+- I am going to assume that you have a working installation of R
+  Studio and that you have a basic understanding of how it works
+- My focus is going to be on R programming
+
+
+# Basics of R
