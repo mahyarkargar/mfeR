@@ -6,7 +6,7 @@ output:
   beamer_presentation:
     includes:
       in_header: slide_header.tex
-    keep_tex: true
+    keep_tex: false
 subtitle: Week 1
 slide_level: 2
 ---
@@ -34,8 +34,8 @@ slide_level: 2
 - Write most of the program in R, and convert the slow parts of the program to C++
 
 # Structure
-- I will talk for 30-60 minutes at the beginning of each class
-- For the remainder of the time you will break into groups and work on
+- I will talk at the beginning of each class
+- For the remainder of the time you will break into your study groups and work on
   programming tasks 
 - Tasks are designed to introduce you to the building blocks that will
   be used for course assignments throughout the MFE program
@@ -52,18 +52,27 @@ slide_level: 2
 \Large Any questions before we start?
 \end{center}
 
-# R Resources
-- R Cookbook by Paul Teetor (free at [UCLA LearnIT](https://learnit.ucla.edu/))
-- R for Everyone by Jared P. Lander
-- The Art of R Programming by Norman Matloff
-- Software for Data Analysis by John Chambers
-- [Use R!](http://link.springer.com/bookseries/6991) Springer series
-    - FYI: Many Springer textbooks are just $25 through <http://link.springer.com/>.  You need to be on campus or signed into the UCLA VPN. You can download the pdfs for free.
-- O'Reilly R Books (free at [UCLA LearnIT](https://learnit.ucla.edu/))
+# R Resources: Books
+- Introductory:
+    - R for Everyone by Jared P. Lander
+    - R Cookbook by Paul Teetor (free at [UCLA LearnIT](https://learnit.ucla.edu/))
+- Intermediate:
+    - The Art of R Programming by Norman Matloff
+- Advanced:
+    - Software for Data Analysis by John Chambers
+    - Advanced R
+
+# Other Resources
+- Book series:
+    - [Use R!](http://link.springer.com/bookseries/6991) Springer series
+        - FYI: Many Springer textbooks are just $25 through <http://link.springer.com/>.  You need to be on campus or signed into the UCLA VPN. You can download the pdfs for free.
+    - O'Reilly R Books (free at [UCLA LearnIT](https://learnit.ucla.edu/))
 - Built in documentation!
     - `?funcname`
-- Data science courses on [Coursera](https://www.coursera.org/specializations/jhu-data-science) 
-- Google
+- Journal of Statistical Software
+- Data science courses on [Coursera](https://www.coursera.org/specializations/jhu-data-science)
+- Data Camp
+- Google, Stack Overflow, ect.
 
 # R Environment
 - First, you need an R distribution
@@ -76,7 +85,97 @@ slide_level: 2
         - [Emacs Speaks Statistics (ESS)](http://ess.r-project.org/) if you use Emacs
 - I am going to assume that you have a working installation of R
   Studio and that you have a basic understanding of how it works
+- I will show you some Visual Studio
 - My focus is going to be on R programming
 
+# RStudio
 
-# Basics of R
+\centerline{
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./graphics/RStudio.png}
+}
+
+# R Tools for Visual Studio
+
+\centerline{
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./graphics/RTVS.png}
+}
+
+
+# Command Line Interface
+- To run a command in `R`, type it into the consule next to the `>` symbol and press the Enter key
+```{r}
+2 + 3
+```
+- Up Arrow key + Enter repeats the line of code
+- Esc (Windows/Mac) or Ctrl-C (Linux) interups a command
+
+# RStudio
+- To start, create a new R Script file.
+    - File/New File/R Script
+- You can type your commands in the R Script file and run them on the Console
+    - Easy way to save your work
+    -`Ctrl+Enter` sends the line at the cusor to the consul
+    -`Ctrl+Shift+S` runs the entite file
+    - Help/Keyboard Shortcuts lists all the available shortcuts
+        - Check out the multiple cursors
+- For larger tasks with many files, create an R project
+- Visual Studio is similar
+
+# R Packages
+- R has a huge collection of user-contributed packages
+    - See CRAN
+- A package is essentially a library of prewritten code designed to accomplish some task or a collection of tasks
+- Not all packages are of the same quality
+
+# R Packages
+- Installing a packages:
+    - `Ctrl+7` in RStudio accesses the packages pane
+    - You can also type `install.packages("packageName")`
+- Uninstalling a package:
+    - `remove.packages`
+- Loading packages:
+    - `require(packageName)` or `library(packageName)` loads a package into R
+    - The difference is that `require ` returns `TRUE` if the package loads or `FALSE` if it doesn't.
+- Unloading packages
+    - `detach("package:packageName")`
+- If two packages have the same function name use two colons:
+    -`package1::func` or `package2::func`
+
+# R as a language
+- R is object oriented
+    - Everything is an object and functions operate differently when passed different types of objects
+- R is functional
+    - You write fewer loops
+    - You write cleaner code
+
+# General Comments
+- Make your code easy to read
+- Check out the google style guide
+- Comment your code!
+
+# Variables
+- Unlike C++, R does not require variable types to be decleared
+- A variable can take on any data type
+- A variable can also hold any R object such as a function, the result of an analysis, a plot, ect.
+- Variable assignment is done with  `<-`
+    - `=` works, but there are reasons to prefer `<-`
+- We can remove variables (e.g. to free up memory) with the `rm` function
+    ```{r}
+    x <- 2
+    x
+    rm(x)  # removes x
+    ```
+
+# Data Types
+- The four main types of data most likely to be used are:
+    1. `numeric`
+    2. `character` (string)
+    3. `Date/POSIXct` (time-based)
+    4. `logical (TRUE/FALSE)`
+
+- The data type can be checked with the `class` function
+```{r}
+x <- as.Date("2010-12-21")
+class(x)
+```
+
