@@ -5,8 +5,8 @@ date: "Fall 2016"
 output:
   beamer_presentation:
     includes:
-      in_header: slide_header.tex
-    keep_tex: true
+      in_header: ../slide_header.tex
+    keep_tex: false
 subtitle: Interfacing R to Other Languages
 slide_level: 2
 ---
@@ -73,23 +73,23 @@ extern "C" void
 # Compile using R's command line tools
 - In R, you can type:
 ```{r,}
-system("R CMD SHLIB timesTwo.cpp")
+system("R CMD SHLIB ./examples/timesTwo.cpp")
 ```
 - Or, on the command line:
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.4\textheight,keepaspectratio]{./RcmdSHLIB}
+  \includegraphics[width=\textwidth,height=0.4\textheight,keepaspectratio]{./figures/RcmdSHLIB}
 }
 
 - Now we have timesTwo.dll (or timesTwo.so) ready to use in R
 
 # Now run the DLL in R
 ```{r}
-dyn.load("./timesTwo.dll")
+dyn.load("./examples/timesTwo.dll")
 value_in <- 32; value_out <- 0
 .C("timesTwo", as.double(value_in), 
    res=as.double(value_out))$res
-dyn.unload("./timesTwo.dll")
+dyn.unload("./examples/timesTwo.dll")
 ```
 - `dyn.load` loads the .dll into R
 - `.C` calls timesTwo, and passes value_in and value_out to the function
@@ -100,7 +100,7 @@ dyn.unload("./timesTwo.dll")
 - Choose File/New/Project../Win32 Project
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./project.png}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/project.png}
 }
 
 
@@ -108,20 +108,20 @@ dyn.unload("./timesTwo.dll")
 - Specify a DLL and an Empty project
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./settings.png}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/settings.png}
 }
 
 # Project at This Point
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./projectToPoint}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/projectToPoint}
 }
 
 # Add a C++ Source File
 -Right-click Source Files in the Solution Explorer, then select Add New Item, and then select C++ File (.cpp)
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./addNewItem}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/addNewItem}
 }
 
 # Add C++ Code to the Source File
@@ -168,7 +168,7 @@ extern "C" void __cdecl
 - Add New Item...Under Visual C++ / Code you will find the .def file.
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./defFile.png}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/defFile.png}
 }
 
 # Module Definition File 
@@ -197,16 +197,16 @@ EXPORTS
     
 # Build the Solution
 - Make sure to change the architecture to x64 before building (unless you are using 32bit R)
-![](./x64.PNG)
+![](./figures/x64.PNG)
 - Ctrl-Shift-B builds the solution.
 - The DLL is found in the ./x64/Debug folder
-![](./DLL.PNG)
+![](./figures/DLL.PNG)
 
 # Add an R project to Visual Studio
 - Right click the solution...Add...New Project...Other Languages...R project
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./timesTwoR.PNG}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/timesTwoR.PNG}
 }
 
 # Now run the DLL in R
@@ -217,7 +217,7 @@ EXPORTS
     - you need the unload the dll if you want to rebuild it.
     
 \centerline{
-  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./DLLinR.PNG}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./figures/DLLinR.PNG}
 }
 
 # Let's change the code for Excel
@@ -239,13 +239,13 @@ double __stdcall timesTwo(double *in)
 - We’ll add a declaration for the function in the DLL.
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./vba.png}
+  \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./figures/vba.png}
 }
 
 - Now we can use the function in Excel
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.2\textheight,keepaspectratio]{./inXL.png}
+  \includegraphics[width=\textwidth,height=0.2\textheight,keepaspectratio]{./figures/inXL.png}
 }
 
 # Rcpp
@@ -268,7 +268,7 @@ Rcpp::NumericVector timesTwo(Rcpp::NumericVector x) {
 3. In R,
 ```{r, warning=FALSE}
 library(Rcpp)
-Rcpp::sourceCpp("./timesTwoRcpp.cpp")
+Rcpp::sourceCpp("./examples/timesTwoRcpp.cpp")
 timesTwo(c(32,64))
 ```
 
@@ -290,7 +290,7 @@ timesTwo(c(32,64))
 - Go to MinGW.org to download the installer.  Then, install `pexports`.
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./pexports.png}
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./figures/pexports.png}
 }
 
 # Setting up the R API
@@ -313,7 +313,7 @@ $ lib /def:R.exp /out:Rdll.lib /MACHINE:X64
 - Add the path to the R header files
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./inclDir.png}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/inclDir.png}
 }
 
 
@@ -323,7 +323,7 @@ $ lib /def:R.exp /out:Rdll.lib /MACHINE:X64
 - Add its path to the additional library Directories
 
 \centerline{
-  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./linkerOptions.png}
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./figures/linkerOptions.png}
 }
 
 
