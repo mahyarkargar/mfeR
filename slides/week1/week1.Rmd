@@ -272,3 +272,19 @@ is.logical(x)
         - Where functiions are applied element-wise to vectors.
     
 
+# Week 2
+- Dates and time series
+- Graphics in R
+- Functions
+- Control statements
+
+# Week 3
+- data munging
+
+# Week 4
+- optimization
+
+# Week 5
+- Simulation
+- Using C/C++ in R
+
