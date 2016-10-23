@@ -1,11 +1,11 @@
 ---
-title: "MFE Programming Workshop"
+title: "MFE R Programming Workshop"
 author: "Brett Dunn"
 date: "Fall 2016"
 output:
   beamer_presentation:
     includes:
-      in_header: slide_header.tex
+      in_header: ../slide_header.tex
     keep_tex: false
 subtitle: Week 1
 slide_level: 2
@@ -15,44 +15,74 @@ slide_level: 2
 - Learn to program in R.
 
 - What does programming mean?
-    - Language syntax
-    - Debugging
-    - Finding solutions
-    - Translating math to code
+    - Language syntax.
+    - Debugging.
+    - Finding solutions.
+    - Translating math to code.
   
 - This is just the beginning, you'll develop these skills throughout the program.
 
+# R as a language
+- R is object oriented.
+    - Everything is an object and functions operate differently when passed different types of objects.
+- R is functional.
+    - You write fewer loops.
+    - You write cleaner code.
+
 # R vs C++
  
-- Both are useful and you will use both in the MFE program
-- R is a high-level language
-    - Low programmer time
-    - It is a great tool for data munging, statistics, regressions, ect.
-    - However, certain tasks in R can be slow (e.g. loops) 
-- C++ is very fast, but it takes longer to write programs
+- Both are useful, and you will use both in the MFE program.
+- R is an interpreted language.
+    - Low programmer time.
+    - A great tool for data munging, statistics, regressions, ect.
+    - However, certain tasks in R can be slow (e.g. loops).
+- C++ is very fast, but it takes longer to write programs.
 - We can use both together!
-- Write most of the program in R, and convert the slow parts of the program to C++
+- A good workflow:
+    1. Write your program in R.
+    2. If the program is too slow, benchmark your code.
+    3. Try to speedup any bottlenecks in R.
+    3. Convert any remaining bottlenecks to C++.
+    
+# Jack of All Trades, Master of None
+
+- You are better served by learning R and C++ very well, rather than trying to learn R, C++, MATLAB, Python, Julia, SAS, ect.
+- The MFE program is just too short.
+    - You also need to learn finance!
+- Once you are proficent with R and C++, learning other languages is easy.
+- Don't become a master of none!
+
+# MATLAB
+
+- If you want to learn MATLAB after learning R, take a look at [R and MATLAB](http://www.math.umaine.edu/~hiebeler/comp/matlabR.html) by David Hiebeler.
+
+\centerline{
+  \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./graphics/RandMATLAB.png}
+}
+
 
 # Structure
-- I will talk at the beginning of each class
+- I will talk at the beginning of each class.
 - For the remainder of the time you will break into your study groups and work on
-  programming tasks 
+  programming tasks.
 - Tasks are designed to introduce you to the building blocks that will
-  be used for course assignments throughout the MFE program
+  be used for course assignments throughout the MFE program.
 - This course is a programming course with emphasis on methods for
   finance:
-    - You will see finance terms and math
+    - You will see finance terms and math.
     - You \emph{may} not understand all of the finance, but you will
-    learn it throughout the program
+    learn it throughout the program.
 - The key skills will be translating mathematical algorithms into code
-  and developing the ability to find helpful resources
+  and developing the ability to find helpful resources.
 
 # Questions
 \begin{center}
 \Large Any questions before we start?
 \end{center}
 
+
 # R Resources: Books
+
 - Introductory:
     - R for Everyone by Jared P. Lander
     - R Cookbook by Paul Teetor (free at [UCLA LearnIT](https://learnit.ucla.edu/))
@@ -60,7 +90,8 @@ slide_level: 2
     - The Art of R Programming by Norman Matloff
 - Advanced:
     - Software for Data Analysis by John Chambers
-    - Advanced R
+    - Extending R by John Chambers
+    - Advanced R by Hadley Wickham
 
 # Other Resources
 - Book series:
@@ -69,24 +100,24 @@ slide_level: 2
     - O'Reilly R Books (free at [UCLA LearnIT](https://learnit.ucla.edu/))
 - Built in documentation!
     - `?funcname`
-- Journal of Statistical Software
+- [Journal of Statistical Software](https://www.jstatsoft.org/index)
 - Data science courses on [Coursera](https://www.coursera.org/specializations/jhu-data-science)
-- Data Camp
+- [Data Camp](https://www.datacamp.com/)
 - Google, Stack Overflow, ect.
 
 # R Environment
-- First, you need an R distribution
-    - I recommend Microsoft R Open
+- First, you need an R distribution.
+    - I recommend Microsoft R Open.
     - <https://mran.revolutionanalytics.com/download/>
-- Second, you need an integrated development environment (IDE) for R
-    - [R Studio](https://www.rstudio.com/products/rstudio/download/preview/) is a fantastic environment to interact with R
+- Second, you need an integrated development environment (IDE) for R.
+    - [R Studio](https://www.rstudio.com/products/rstudio/download/preview/) is a fantastic environment to interact with R.
     - Other options:
-        - [R Tools for Visual Studio](https://www.visualstudio.com/en-us/features/rtvs-vs.aspx) if you use Visual Studio
-        - [Emacs Speaks Statistics (ESS)](http://ess.r-project.org/) if you use Emacs
+        - [R Tools for Visual Studio](https://www.visualstudio.com/en-us/features/rtvs-vs.aspx) if you use Visual Studio.
+        - [Emacs Speaks Statistics (ESS)](http://ess.r-project.org/) if you use Emacs.
 - I am going to assume that you have a working installation of R
-  Studio and that you have a basic understanding of how it works
-- I will show you some Visual Studio
-- My focus is going to be on R programming
+  Studio and that you have a basic understanding of how it works.
+- I will show you some Visual Studio.
+- My focus is going to be on R programming.
 
 # RStudio
 
@@ -100,73 +131,87 @@ slide_level: 2
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./graphics/RTVS.png}
 }
 
+# Course Materials
+
+- https://github.com/brettdunn/mfeR
+- The materials for this course were created in RStudio, using R Markdown.
+- To create your own RStudio project:
+    - File / New Project / Version Control / Git
+    - Enter the URL
+
+\centerline{
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./graphics/git.png}
+}
+
 
 # Command Line Interface
-- To run a command in `R`, type it into the consule next to the `>` symbol and press the Enter key
+- To run a command in `R`, type it into the console next to the `>` symbol and press the Enter key.
 ```{r}
 2 + 3
 ```
-- Up Arrow key + Enter repeats the line of code
-- Esc (Windows/Mac) or Ctrl-C (Linux) interups a command
+- Up Arrow + Enter repeats the line of code.
+- Esc (Windows/Mac) or Ctrl-C (Linux) interups a command.
 
 # RStudio
 - To start, create a new R Script file.
     - File/New File/R Script
-- You can type your commands in the R Script file and run them on the Console
-    - Easy way to save your work
-    -`Ctrl+Enter` sends the line at the cusor to the consul
-    -`Ctrl+Shift+S` runs the entite file
-    - Help/Keyboard Shortcuts lists all the available shortcuts
-        - Check out the multiple cursors
-- For larger tasks with many files, create an R project
-- Visual Studio is similar
+- You can type your commands in the R Script file and run them on the Console.
+    - Easy way to save your work.
+    - `Ctrl+Enter` sends the line at the cusor to the consule.
+    - `Ctrl+Shift+S` runs the entite file.
+    - Help/Keyboard Shortcuts lists all the available shortcuts.
+        - Check out the multiple cursors.
+- For larger tasks with many files, create an R project.
+- Visual Studio is similar.
+
+# General Comments
+- Make your code easy to read.
+- Check out [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
+- Comment your code!
+
+\centerline{
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./graphics/styleguide.png}
+}
 
 # R Packages
-- R has a huge collection of user-contributed packages
-    - See CRAN
-- A package is essentially a library of prewritten code designed to accomplish some task or a collection of tasks
-- Not all packages are of the same quality
+- A package is essentially a library of prewritten code designed to accomplish some task or a collection of tasks.
+- R has a huge collection of user-contributed packages.
+    - Warning: Not all packages are of the same quality.
+    
+    
+\centerline{
+  \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./graphics/cran.png}
+}
 
 # R Packages
 - Installing a packages:
     - `Ctrl+7` in RStudio accesses the packages pane
     - You can also type `install.packages("packageName")`
 - Uninstalling a package:
-    - `remove.packages`
+    - `remove.packages("packageName")`
 - Loading packages:
     - `require(packageName)` or `library(packageName)` loads a package into R
     - The difference is that `require ` returns `TRUE` if the package loads or `FALSE` if it doesn't.
 - Unloading packages
-    - `detach("package:packageName")`
+    - `detach(package:packageName)`
 - If two packages have the same function name use two colons:
     -`package1::func` or `package2::func`
 
-# R as a language
-- R is object oriented
-    - Everything is an object and functions operate differently when passed different types of objects
-- R is functional
-    - You write fewer loops
-    - You write cleaner code
-
-# General Comments
-- Make your code easy to read
-- Check out the google style guide
-- Comment your code!
-
 # Variables
-- Unlike C++, R does not require variable types to be decleared
-- A variable can take on any data type
+- Unlike C++, R does not require variable types to be decleared.
+- A variable can take on any data type.
 - A variable can also hold any R object such as a function, the result of an analysis, a plot, ect.
-- Variable assignment is done with  `<-`
-    - `=` works, but there are reasons to prefer `<-`
-- We can remove variables (e.g. to free up memory) with the `rm` function
+- Variable assignment is done with  `<-`.
+    - `=` works, but there are reasons to prefer `<-`.
+- We can remove variables (e.g. to free up memory) with the `rm` function. `gc()` runs garbage collection.
     ```{r}
-    x <- 2
-    x
+    x <- 2  # x is a pointer
+    x  # the same output as print(x)
     rm(x)  # removes x
     ```
 
 # Data Types
+- There are many different data types in R.
 - The four main types of data most likely to be used are:
     1. `numeric`
     2. `character` (string)
@@ -178,4 +223,52 @@ slide_level: 2
 x <- as.Date("2010-12-21")
 class(x)
 ```
+
+# Casting
+```{r}
+x <- "2010-12-21"
+class(x)
+x
+x <- as.Date(x)
+class(x)
+x
+```
+
+# More Casting
+```{r}
+x <- as.numeric(x)
+class(x)
+is.numeric(x)
+x  # number of days since Jan 1, 1970
+```
+
+# Even More Casting
+```{r}
+x <- as.integer(x)  # x <- 14964L assigns an integer
+class(x)
+is.integer(x)
+is.numeric(x)  # R promotes int to numeric as needed
+4L / 5L
+```
+
+# Logicals
+```{r}
+# TRUE == 1 and FALSE == 0
+x <- TRUE  # TRUE, FALSE, T, F are logicals
+is.logical(x) 
+5 == 5  # != tests for inequality
+"a" < "b"  # works on characters as well
+```
+
+# Vectors
+- A `vector` is a collection of elements, all of the same type.
+
+- We will learn about:
+    - Recycling
+        - The automatic lengthening of vectors.
+    - Filtering
+        - The extraction of subsets of vectors.
+    - Vectorization
+        - Where functiions are applied element-wise to vectors.
+    
 
