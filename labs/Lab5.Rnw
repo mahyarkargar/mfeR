@@ -1,0 +1,96 @@
+% Created 2015-11-02 Mon 15:28
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage[hmargin=1in, vmargin = 1in]{geometry}
+\author{Rob Richmond}
+\date{December 3, 2015}
+\title{2015 MFE Programming Workshop Lab 5}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+
+\section{Implied Volatility}
+\label{sec-1}
+Last week you created a function to calculate the Black-Scholes value
+of an option (if you didn't create this function then you can use
+\verb~blsprice~ from the financial toolbox). One of the parameters used by
+this function is the volatility $\sigma$. Often times you will want to
+use option prices to back out the volatility that is implied by these
+prices. Given that the other parameters of the model are not
+particularly difficult to estimate, this becomes a root finding
+problem. Specifically if the Black-Scholes price of an option is given
+by $P_{BS}(r,T,K,S_0,\sigma)$ and the observed price is $P_{obs}$,
+then the Black-Scholes implied volatility is $\sigma$ such that $P_{BS}
+= P_{obs}$.
+
+The file \emph{OptionPrices.xlsx} contains 3 columns: the strike price, observed
+price, and implied volatility for options on the SPY as of November
+14, 2014 as given by Yahoo finance. Keeping all parameters as yearly,
+use $r=.01$, $S_0=204.24$, and $T=30/252$ since these options have 30
+trading days until expiration. 
+
+\begin{itemize}
+\item Read the data in from the excel file and use a root finding algorithm
+to calculate the Black-Scholes implied volatility for each option.
+\item Create two plots: 
+\begin{itemize}
+\item One with two panels. The first will plot the strike price versus
+the Yahoo finance implied volatility. The second panel will have
+your implied volatility versus the strike price.
+\item The second plot will have both implied volatilities versus the
+strike price.
+\end{itemize}
+\item If you did things right, you should see a nice smile on the
+charts. This is know as the volatility smile, and I'm sure this
+isn't the last time you'll be hearing about it!
+\end{itemize}
+
+\section{Mean-Variance Portfolio Optimization}
+\label{sec-2}
+The file \emph{stockdata.csv} contains daily stock prices $P_{it}$ for 9
+stocks, where $i$ indexes the stock and $t$ indexes the time
+period. The returns on these stocks are given by $R_{it} =
+\frac{P_{it}}{P_{it-1}}-1$. Given a set of portfolio weights
+(represented as an N-vector) $w$, the mean return on this portfolio is
+$w' \mu$ where $\mu$ is the Nx1 vector of sample means of the asset
+returns. The variance of this portfolio is given by $w' \Sigma w$
+where $\Sigma$ is the sample variance-covariance matrix of the asset
+returns. Since this is a quadratic programming problem we will use the
+matlab function \verb~quadprog~ to find various portfolio weights.
+
+\begin{itemize}
+\item Read the prices in from the csv file and calculate the daily
+returns. Calculate the sample mean vector and the sample covariance
+matrix of the returns.
+\item Calculate the weights of the minimum variance portfolio constraining
+the weights to sum to 1.
+\item Find the weights of the minimum variance portfolio such that the
+mean daily return is equal to 0.002.
+\item Suppose that you are not allowed to short in your portfolio (that
+is, have negative weights). Find the weights of the minimum variance
+portfolio such that the mean daily return is equal to 0.002 and such
+that the portfolio weights are positive.
+\item Can you find a portfolio that achieves a daily return of 1\% without
+shorting?
+\end{itemize}
+% Emacs 24.5.1 (Org mode 8.2.10)
+\end{document}
