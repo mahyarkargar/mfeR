@@ -1,0 +1,180 @@
+---
+title: "MFE R Programming Workshop"
+author: "Brett Dunn"
+date: "Fall 2016"
+output:
+  beamer_presentation:
+    includes:
+      in_header: ../slide_header.tex
+    keep_tex: false
+subtitle: Week 2
+slide_level: 2
+---
+
+# Introduction
+
+## Questions
+\begin{center}
+\Large Any questions before we start?
+\end{center}
+
+## Basic Plotting
+ 
+- `example(plot)`
+- `example(hist)`
+
+
+# Dates
+
+## Lubridate
+ 
+- Base R dates are annoying to say the least
+- Use a package!
+
+```{r}
+# install.packages("lubridate")
+library(lubridate)
+```
+ 
+
+## Parse a date
+ 
+- Lubridate accepts lots of formats
+
+```{r}
+ymd("20110604")
+mdy("06-04-2011")
+dmy("04/06/2011")
+```
+ 
+
+## Parse a date and time
+
+```{r}
+ymd_hms("2011-06-04 12:00:00", tz = "Pacific/Auckland")
+```
+ 
+
+## Extraction
+
+```{r}
+arrive <- ymd_hms("2011-06-04 12:00:00")
+second(arrive)
+second(arrive) <- 25
+arrive
+```
+ 
+
+## Intervals
+
+```{r}
+arrive <- ymd_hms("2011-06-04 12:00:00")
+leave <- ymd_hms("2011-08-10 14:00:00")
+interval(arrive, leave)
+```
+ 
+
+## Arithmetic
+
+```{r}
+mydate <- ymd("20130130")
+mydate + days(2)
+mydate + months(5)
+```
+ 
+
+## Arithmetic
+```{r}
+mydate <- ymd("20130130")
+mydate + days(1:5)
+```
+ 
+
+## End of (next) month
+
+```{r}
+jan31 <- ymd("2013-01-31")
+jan31 + months(1)
+ceiling_date(jan31, "month") - days(1)
+floor_date(jan31, "month") + months(2) - days(1)
+```
+ 
+
+# Time series with XTS
+## xts
+
+- xts is a package for ordered data in R
+- xts objects can be treated like data frames much of the time
+- but, they have other featuers
+
+```{r}
+# install.packages("xts")
+library(xts)
+```
+ 
+
+
+## Data from quantmod
+ 
+- quantmod allows you to download stock data into xts objects
+
+```{r}
+library(quantmod)
+getSymbols("SPY", src="google",
+           from = "2008-01-01")
+head(SPY,3)
+```
+ 
+
+## Plot
+
+```{r, fig.height=4}
+plot(SPY$SPY.Close)
+```
+ 
+
+## Subset
+ 
+
+```{r}
+dim(SPY)
+mysub <- SPY['2010-01/2010-12-31']
+dim(mysub)
+```
+ 
+
+## Switch period
+ 
+- get end of month observations
+
+```{r}
+eom <- to.period(SPY,'months')
+head(eom,3)
+```
+ 
+
+## Differencing
+ 
+```{r}
+SPY$ret <- diff(log(SPY$SPY.Close), lag=1)
+head(SPY$ret)
+```
+ 
+
+## Another Plot
+ 
+```{r, fig.height=3}
+plot(SPY$ret, main = "SPY Returns",
+      col = "red", xlab = "Date", ylab = "Return", 
+      major.ticks='years',
+      minor.ticks=FALSE)
+```
+ 
+
+## Getting help
+
+- As usual, read the manuals and vignettes for help
+- Google: "cran xts"
+
+
+

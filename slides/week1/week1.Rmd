@@ -35,7 +35,7 @@ slide_level: 2
 - Both are useful, and you will use both in the MFE program.
 - R is an interpreted language.
     - Low programmer time.
-    - A great tool for data munging, statistics, regressions, ect.
+    - A great tool for data munging, statistics, regressions, etc.
     - However, certain tasks in R can be slow (e.g. loops).
 - C++ is very fast, but it takes longer to write programs.
 - We can use both together!
@@ -47,10 +47,10 @@ slide_level: 2
     
 ## Jack of All Trades, Master of None
 
-- You are better served by learning R and C++ very well, rather than trying to learn R, C++, MATLAB, Python, Julia, SAS, ect.
+- You are better served by learning R and C++ very well, rather than trying to learn R, C++, MATLAB, Python, Julia, SAS, etc.
 - The MFE program is just too short.
     - You also need to learn finance!
-- Once you are proficent with R and C++, learning other languages is easy.
+- Once you are proficient with R and C++, learning other languages is easy.
 - Don't become a master of none!
 
 ## MATLAB
@@ -107,7 +107,7 @@ slide_level: 2
 - [Data Camp](https://www.datacamp.com/)
 - https://www.r-bloggers.com/
 - https://twitter.com/rstudiotips
-- Google, Stack Overflow, ect.
+- Google, Stack Overflow, etc.
 
 ## R Environment
 - First, you need an R distribution.
@@ -155,15 +155,15 @@ slide_level: 2
 2 + 3
 ```
 - Up Arrow + Enter repeats the line of code.
-- Esc (Windows/Mac) or Ctrl-C (Linux) interups a command.
+- Esc (Windows/Mac) or Ctrl-C (Linux) interrupts a command.
 
 ## RStudio
 - To start, create a new R Script file.
     - File/New File/R Script
 - You can type your commands in the R Script file and run them on the Console.
     - Easy way to save your work.
-    - `Ctrl+Enter` sends the line at the cusor to the consule.
-    - `Ctrl+Shift+S` runs the entite file.
+    - `Ctrl+Enter` sends the line at the cursor to the console.
+    - `Ctrl+Shift+S` runs the entire file.
     - Help/Keyboard Shortcuts lists all the available shortcuts.
         - Check out the multiple cursors.
 - For larger tasks with many files, create an R project.
@@ -203,9 +203,9 @@ slide_level: 2
     -`package1::func` or `package2::func`
 
 ## Variables
-- Unlike C++, R does not require variable types to be decleared.
+- Unlike C++, R does not require variable types to be declared.
 - A variable can take on any data type.
-- A variable can also hold any R object such as a function, the result of an analysis, a plot, ect.
+- A variable can also hold any R object such as a function, the result of an analysis, a plot, etc.
 - Variable assignment is done with  `<-`.
     - `=` works, but there are reasons to prefer `<-`.
 - We can remove variables (e.g. to free up memory) with the `rm` function. `gc()` runs garbage collection.
@@ -278,7 +278,7 @@ is.logical(x)
     - Filtering
         - The extraction of subsets of vectors.
     - Vectorization
-        - Where functiions are applied element-wise to vectors.
+        - Where functions are applied element-wise to vectors.
     
 
 ## Vectors and Assignment
@@ -315,7 +315,7 @@ length(myvec)
 ```
 
 ## Recycling
-- Vectors are recycled when an operation acts elementwise
+- Vectors are recycled when an operation acts element-wise
 - Be careful with and aware of this behavior!
 - In some cases it is useful, others confusing
 ```{r}
@@ -449,6 +449,7 @@ rbind(mymat1,mymat3)
 ```
 
 
+
 # Lists
 
 ## Intro
@@ -531,7 +532,7 @@ myframe
 
 
 ## names
-- column names in data.frames are specificed by `names()`
+- column names in data.frames are specified by `names()`
 - this is because data.frames are actually lists with special attributes
 - that means that the usual list functions work on data.frames
 - lapply, etc
@@ -606,6 +607,7 @@ if(x<0) {
 } 
 myabs
 ```
+
 
 
 # Functions
