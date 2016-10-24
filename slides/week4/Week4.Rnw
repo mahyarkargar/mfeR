@@ -1,0 +1,603 @@
+% Created 2015-11-02 Mon 15:12
+\documentclass[handout]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{verbatim}
+\usepackage{multirow}
+\usetikzlibrary{arrows,shapes}
+\usepackage[beamer,customcolors]{hf-tikz}
+\usepackage{natbib}
+\usepackage{float}
+\usepackage{caption}
+\pretolerance=10000
+\usepackage{dcolumn}
+\usepackage{booktabs}
+\usepackage{thmtools, thm-restate}
+\usepackage{hyperref}
+\usepackage{caption}
+\captionsetup{font=scriptsize,labelfont=scriptsize}
+\institute[UCLA]{UCLA Anderson}
+\setbeamertemplate{note page}[plain]
+\usepackage{pst-node}
+\usetheme[block=fill,everytitleformat=regular,numbering=none,sectionpage=none]{m}
+\author{Rob Richmond}
+\date{November 30, 2015}
+\title{MFE Programming Workshop Class 4}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+% tikz style for highlighting rows
+\tikzset{hl/.style={
+set fill color=mLightBrown!80!black!40,
+set border color=mLightBrown!80!black,
+},
+}
+
+\setlength{\abovedisplayskip}{8pt}
+\setlength{\belowdisplayskip}{8pt}
+\setlength{\abovedisplayshortskip}{8pt}
+\setlength{\belowdisplayshortskip}{8pt}
+\newcommand<>{\uncoverubrace}[2]{%
+\onslide#3 \underbrace{ \onslide<1->%
+#1%
+\onslide#3 }_{#2} \onslide<1->%
+}
+\newcommand<>{\uncoverobrace}[2]{%
+\onslide#3 \overbrace{ \onslide<1->%
+#1%
+\onslide#3 }^{#2} \onslide<1->%
+}
+
+\psset{arrowscale=2,arrows=->}
+
+\section{Introduction}
+\label{sec-1}
+\begin{frame}[label=sec-1-1]{Questions}
+\begin{center}
+\Large Any questions before we start?
+\end{center}
+\end{frame}
+\section{Matlab}
+\label{sec-2}
+\begin{frame}[label=sec-2-1]{The interface}
+\begin{itemize}
+\item Matlab is more than just a programming language
+\item Lets take a look at the interface
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-2-2]{Hello world}
+ \begin{itemize}
+\item I can't break programming tradition!
+\end{itemize}
+\begin{columns}
+\begin{column}{.4\textwidth}
+\begin{block}{Code}
+\begin{verbatim}
+disp('hello world')
+\end{verbatim}
+\end{block}
+\end{column}
+\begin{column}{.4\textwidth}
+\begin{block}{Output}
+\begin{verbatim}
+hello world
+\end{verbatim}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+\begin{frame}[fragile,label=sec-2-3]{Documentation}
+ \begin{itemize}
+\item The command \verb~help~ will be very useful
+\begin{itemize}
+\item try \verb~help disp~ now to get information on the \verb~disp~ function we
+just used
+\end{itemize}
+\item \emph{very} Useful resources can be found under the help menu including
+programming tutoritals
+\item A similarly useful command is \verb~doc~
+\begin{itemize}
+\item \verb~doc disp~
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label=sec-2-4]{Actually writing code}
+\begin{itemize}
+\item Matlab has you structure code in \emph{.m} files
+\begin{itemize}
+\item Scripts (now), functions (later)
+\end{itemize}
+\item Click the new script button of press File-New and create a new
+script
+\item Type in the code examples and run them as we go
+\begin{itemize}
+\item Highlight the region and select evaluate selection
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-2-5]{Variables and operators}
+ \begin{itemize}
+\item Assignment is done using =
+\item Matlab works like a fancy calculator
+\item using ; suppreses the output of a given line
+\item You can use ; to put multiple statements on a line
+\end{itemize}
+\begin{block}{Example 1}
+\begin{verbatim}
+x = 1;
+x+1
+\end{verbatim}
+\end{block}
+
+\begin{block}{Example 2}
+\begin{verbatim}
+x=3; y=4;
+x*y
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-6]{Comments}
+ \begin{itemize}
+\item Get in the habit of commenting your code
+\begin{itemize}
+\item Other people have to read and understand it
+\item You have to read it and understand if 1 year down the road
+\end{itemize}
+\item Comments start with \%
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+% declare a variable
+x = 2;
+% operate on it
+x*2
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-7]{Matrices}
+ \begin{itemize}
+\item \emph{most} objects in matlab are matrices/vectors
+\item Create vecotors or matrices using \verb~[ stuff ]~
+\end{itemize}
+\begin{block}{Example 1}
+\begin{verbatim}
+mymatrix = [1 2;
+            3 4;
+            5 6;];
+mymatrix*2
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-8]{Special Matrices}
+ \begin{itemize}
+\item Some special matrices can be created using \verb~eye, NaN, zeros, ones~
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+N = 4;
+myidentity = eye(N)
+ans = myidentity
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-9]{Special Matrices}
+ \begin{itemize}
+\item \verb~eye(N)~ is the identity matrix of size N*N
+\item \verb~NaN~ will create a matrix with elements that are ``Not a
+number''. This is useful for initilazing variables before use
+\item \verb~zeros~ is a matrix of zeros
+\item \verb~ones~ is a matrix of ones
+\item \verb~repmat~ is incredibly useful creating matrices are are replicated
+multiple times in a given dimension
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-2-10]{Special Matrices}
+ \begin{itemize}
+\item You can pass multiple parameters to these functions
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+N = 4;
+M = 3;
+mymat = zeros(N,M)
+ans = mymat
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-11]{The : operator}
+ \begin{itemize}
+\item You can create sequences of numbers with :
+\item You can use two : operators to create sequences skipping elements
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+x = 1:5;
+ans = x
+\end{verbatim}
+\end{block}
+
+\begin{block}{Example 2}
+\begin{verbatim}
+y = 1:2:10;
+ans = y
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-12]{Accesing matrix elements (1)}
+ \begin{itemize}
+\item Using () you can access matrix subsets
+\item Indexes are rows followed by columns
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = [1 3;
+     8 4;
+     6 2];
+A(1,2)
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-13]{Accesing matrix elements (2)}
+ \begin{itemize}
+\item You can use : to access multiple elements
+\item : by itself means all elements in that dimension
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = [1 3 8;
+     8 4 4;
+     6 2 5];
+A(:,1:2)
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-14]{Accesing matrix elements (3)}
+ \begin{itemize}
+\item \verb~end~ accesses to the end of that dimensions
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = [1 3 8;
+     8 4 4;
+     6 2 5];
+A(2,2:end)
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-15]{Accesing matrix elements (4)}
+ \begin{itemize}
+\item You can also assign to elements
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = zeros(3,3);
+A(2,:) = 5;
+ans = A
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-16]{Combining matrices}
+ \begin{itemize}
+\item You can combine matrices with [ ]
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = eye(3);
+B = zeros(3,4);
+out = [A B];
+ans = out
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-17]{Matrix Operations (1)}
+ \begin{itemize}
+\item Operators + and - work element-wise on matrices
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = eye(3);
+A - 1
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-18]{Matrix Operations (2)}
+ \begin{itemize}
+\item * is matrix multiplication
+\begin{itemize}
+\item Dimensions need to be correct!
+\end{itemize}
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = magic(3);
+B = ones(3);
+ans = A*B
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-19]{Matrix Operations (3)}
+ \begin{itemize}
+\item .* and ./ operate element wise
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = eye(3);
+ans = A./2
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-20]{Matrix Operations (4)}
+ \begin{itemize}
+\item .* and ./ operate element wise
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = eye(2);
+B = [1 2;
+     3 4];
+ans = A./B
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-21]{Matrix Operations (5)}
+ \begin{itemize}
+\item We can solve equations using / and $\backslash$
+\item Consider the matrix equation $Ax = b$
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = [1 2;
+     3 4;
+     5 6];
+b = [5; 4; 3];
+x = A\b;
+ans = x
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-22]{Matrix Operations (6)}
+ \begin{itemize}
+\item You can invert matrices with \verb~^(-1)~ or with \verb~inv~
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = [1 2 6;
+     3 4 8;
+     5 6 9];
+ans = inv(A)
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-23]{Functions}
+ \begin{itemize}
+\item Matlab has countless functions that are already written for you
+\item \verb~sin, cos, abs, max, min, ...~
+\item See \verb~doc functionname~ for details on these functions
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-2-24]{Function examples (1)}
+ \begin{itemize}
+\item You can use \verb~sum~ to get a sum of matrix elements across a dimension
+\item For example get the sum of the \verb~magic~ matrix down rows
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = magic(4);
+ans = sum(A,1)
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-25]{Function examples (1)}
+ \begin{itemize}
+\item Get the max element of a vector
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+myvec = [1;2;6;2;4;8;5];
+mymax = max(myvec);
+ans = mymax
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-26]{Function examples (2)}
+ \begin{itemize}
+\item Get the max element of a vector
+\item AND its position
+\item What is going on here?
+\begin{itemize}
+\item \verb~max~ actually returns multiple values, I assign these to a vector
+\item the second value returned is the index of the maximum
+\end{itemize}
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+myvec = [1;2;6;2;4;8;5];
+[mymax myidx] = max(myvec);
+ans = myidx
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-27]{Function examples (3)}
+ \begin{itemize}
+\item \verb~size~ is useful for finding the size of a matrix
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+A = ones(3,5);
+[M N] = size(A);
+ans = M
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-28]{Conditionals}
+ \begin{itemize}
+\item Matlab allows for conditional statements using \verb~if~
+\item The operator == tests for equality
+\begin{itemize}
+\item that is \emph{two} = signs
+\item This is different than assignment with =
+\end{itemize}
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+x = -10
+% create your own abs
+if(x < 0)
+    myabs = -x
+else
+    myabs = x
+end
+ans = myabs
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-29]{Looping (1)}
+ \begin{itemize}
+\item Loops can be created using \verb~for~ and \verb~while~
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+x = 0;
+for i = 1:10
+    x = x+i;
+end
+ans = x
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-30]{Looping (2)}
+ \begin{itemize}
+\item Loops can be created using \verb~for~ and \verb~while~
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+x = 0;
+i = 0;
+while i < 10
+    x = x+i;
+    i = i+1;
+end
+ans = x
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[label=sec-2-31]{Performance of looping and an example}
+\begin{itemize}
+\item Although loop performance in Matlab has improved, there are often
+better ways to approach things
+\item Lets look at 3 possible ways to calculate and Lp Norm of a vector x:
+\begin{equation*}
+\left( \sum_{i=1}^N |X_i|^p \right)^{1/p}
+\end{equation*}
+\begin{itemize}
+\item Looping
+\item Combining built in functions
+\item Using one built in function
+\end{itemize}
+\end{itemize}
+\end{frame}
+\begin{frame}[label=sec-2-32]{Example take aways}
+\begin{itemize}
+\item Don't reinvent the wheel
+\item Google is your friend: ``matlab my goal''
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile,label=sec-2-33]{Functions}
+ \begin{itemize}
+\item Matlab allows you to write your own function
+\begin{itemize}
+\item and you should!
+\end{itemize}
+\item Put logic into individual functions that you know do what you want
+and then call them
+\item Functions are declared in their on \emph{.m} file
+\end{itemize}
+\begin{block}{Example}
+\begin{verbatim}
+[out1 out2] = function(in1, in2)
+% this is my function documentation
+
+% this is where the function logic goes
+end
+\end{verbatim}
+\end{block}
+\end{frame}
+
+\begin{frame}[fragile,label=sec-2-34]{The search path}
+ \begin{itemize}
+\item Matlab has a path that it looks for the \emph{.m} files that define your
+functions
+\item You can change the current working directory of matlab from the
+interface
+\item You can also add specific directories to your path
+\verb~path(path,'newpath')~
+\item See \verb~help path~ for more info
+\end{itemize}
+\end{frame}
+
+
+
+
+
+
+
+
+
+\begin{frame}[fragile,label=sec-2-35]{Reading and writing data}
+ \begin{itemize}
+\item There are a lot of facilities to read data in in matlab
+\item Most commonly you will read in data from excel: \verb~xlsread~
+\item and from csv: \verb~csvread~
+\item to write a csv: \verb~csvwrite~
+\end{itemize}
+\end{frame}
+% Emacs 24.5.1 (Org mode 8.2.10)
+\end{document}
