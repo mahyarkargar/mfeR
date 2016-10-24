@@ -17,14 +17,15 @@
 \usepackage{hyperref}
 \tolerance=1000
 \usepackage[hmargin=1in, vmargin = 1in]{geometry}
-\author{Rob Richmond}
-\date{December 3, 2015}
-\title{2015 MFE Programming Workshop Lab 5}
+\author{Brett R. Dunn}
+\date{November 28, 2015}
+\title{2016 MFE R Programming Workshop Lab 5}
 \hypersetup{
   pdfkeywords={},
   pdfsubject={},
   pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 

@@ -10,8 +10,9 @@ output:
 subtitle: Week 1
 slide_level: 2
 ---
+# Overview
 
-# Goals
+## Goals
 - Learn to program in R.
 
 - What does programming mean?
@@ -22,14 +23,14 @@ slide_level: 2
   
 - This is just the beginning, you'll develop these skills throughout the program.
 
-# R as a language
+## R as a language
 - R is object oriented.
     - Everything is an object and functions operate differently when passed different types of objects.
 - R is functional.
     - You write fewer loops.
     - You write cleaner code.
 
-# R vs C++
+## R vs C++
  
 - Both are useful, and you will use both in the MFE program.
 - R is an interpreted language.
@@ -44,7 +45,7 @@ slide_level: 2
     3. Try to speedup any bottlenecks in R.
     3. Convert any remaining bottlenecks to C++.
     
-# Jack of All Trades, Master of None
+## Jack of All Trades, Master of None
 
 - You are better served by learning R and C++ very well, rather than trying to learn R, C++, MATLAB, Python, Julia, SAS, ect.
 - The MFE program is just too short.
@@ -52,16 +53,16 @@ slide_level: 2
 - Once you are proficent with R and C++, learning other languages is easy.
 - Don't become a master of none!
 
-# MATLAB
+## MATLAB
 
-- If you want to learn MATLAB after learning R, take a look at [R and MATLAB](http://www.math.umaine.edu/~hiebeler/comp/matlabR.html) by David Hiebeler.
+- If you want to learn MATLAB after learning R, take a look at [R and MATLAB](http://www.math.umaine.edu/`hiebeler/comp/matlabR.html) by David Hiebeler.
 
 \centerline{
   \includegraphics[width=\textwidth,height=0.7\textheight,keepaspectratio]{./graphics/RandMATLAB.png}
 }
 
 
-# Structure
+## Structure
 - I will talk at the beginning of each class.
 - For the remainder of the time you will break into your study groups and work on
   programming tasks.
@@ -75,17 +76,18 @@ slide_level: 2
 - The key skills will be translating mathematical algorithms into code
   and developing the ability to find helpful resources.
 
-# Questions
+## Questions
 \begin{center}
 \Large Any questions before we start?
 \end{center}
 
 
-# R Resources: Books
+## R Resources: Books
 
 - Introductory:
     - R for Everyone by Jared P. Lander
     - R Cookbook by Paul Teetor (free at [UCLA LearnIT](https://learnit.ucla.edu/))
+    - R for Data Science by Hadley Wickham (free as well)
 - Intermediate:
     - The Art of R Programming by Norman Matloff
 - Advanced:
@@ -93,7 +95,7 @@ slide_level: 2
     - Extending R by John Chambers
     - Advanced R by Hadley Wickham
 
-# Other Resources
+## Other Resources
 - Book series:
     - [Use R!](http://link.springer.com/bookseries/6991) Springer series
         - FYI: Many Springer textbooks are just $25 through <http://link.springer.com/>.  You need to be on campus or signed into the UCLA VPN. You can download the pdfs for free.
@@ -103,9 +105,11 @@ slide_level: 2
 - [Journal of Statistical Software](https://www.jstatsoft.org/index)
 - Data science courses on [Coursera](https://www.coursera.org/specializations/jhu-data-science)
 - [Data Camp](https://www.datacamp.com/)
+- https://www.r-bloggers.com/
+- https://twitter.com/rstudiotips
 - Google, Stack Overflow, ect.
 
-# R Environment
+## R Environment
 - First, you need an R distribution.
     - I recommend Microsoft R Open.
     - <https://mran.revolutionanalytics.com/download/>
@@ -119,19 +123,19 @@ slide_level: 2
 - I will show you some Visual Studio.
 - My focus is going to be on R programming.
 
-# RStudio
+## RStudio
 
 \centerline{
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./graphics/RStudio.png}
 }
 
-# R Tools for Visual Studio
+## R Tools for Visual Studio
 
 \centerline{
   \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{./graphics/RTVS.png}
 }
 
-# Course Materials
+## Course Materials
 
 - https://github.com/brettdunn/mfeR
 - The materials for this course were created in RStudio, using R Markdown.
@@ -143,8 +147,9 @@ slide_level: 2
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./graphics/git.png}
 }
 
+# R Basics
 
-# Command Line Interface
+## Command Line Interface
 - To run a command in `R`, type it into the console next to the `>` symbol and press the Enter key.
 ```{r}
 2 + 3
@@ -152,7 +157,7 @@ slide_level: 2
 - Up Arrow + Enter repeats the line of code.
 - Esc (Windows/Mac) or Ctrl-C (Linux) interups a command.
 
-# RStudio
+## RStudio
 - To start, create a new R Script file.
     - File/New File/R Script
 - You can type your commands in the R Script file and run them on the Console.
@@ -164,7 +169,7 @@ slide_level: 2
 - For larger tasks with many files, create an R project.
 - Visual Studio is similar.
 
-# General Comments
+## General Comments
 - Make your code easy to read.
 - Check out [Google's R Style Guide](https://google.github.io/styleguide/Rguide.xml)
 - Comment your code!
@@ -173,7 +178,7 @@ slide_level: 2
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./graphics/styleguide.png}
 }
 
-# R Packages
+## R Packages
 - A package is essentially a library of prewritten code designed to accomplish some task or a collection of tasks.
 - R has a huge collection of user-contributed packages.
     - Warning: Not all packages are of the same quality.
@@ -183,7 +188,7 @@ slide_level: 2
   \includegraphics[width=\textwidth,height=0.5\textheight,keepaspectratio]{./graphics/cran.png}
 }
 
-# R Packages
+## R Packages
 - Installing a packages:
     - `Ctrl+7` in RStudio accesses the packages pane
     - You can also type `install.packages("packageName")`
@@ -197,7 +202,7 @@ slide_level: 2
 - If two packages have the same function name use two colons:
     -`package1::func` or `package2::func`
 
-# Variables
+## Variables
 - Unlike C++, R does not require variable types to be decleared.
 - A variable can take on any data type.
 - A variable can also hold any R object such as a function, the result of an analysis, a plot, ect.
@@ -210,7 +215,7 @@ slide_level: 2
     rm(x)  # removes x
     ```
 
-# Data Types
+## Data Types
 - There are many different data types in R.
 - The four main types of data most likely to be used are:
     1. `numeric`
@@ -224,7 +229,7 @@ x <- as.Date("2010-12-21")
 class(x)
 ```
 
-# Casting
+## Casting
 ```{r}
 x <- "2010-12-21"
 class(x)
@@ -234,7 +239,7 @@ class(x)
 x
 ```
 
-# More Casting
+## More Casting
 ```{r}
 x <- as.numeric(x)
 class(x)
@@ -242,7 +247,7 @@ is.numeric(x)
 x  # number of days since Jan 1, 1970
 ```
 
-# Even More Casting
+## Even More Casting
 ```{r}
 x <- as.integer(x)  # x <- 14964L assigns an integer
 class(x)
@@ -251,7 +256,7 @@ is.numeric(x)  # R promotes int to numeric as needed
 4L / 5L
 ```
 
-# Logicals
+## Logicals
 ```{r}
 # TRUE == 1 and FALSE == 0
 x <- TRUE  # TRUE, FALSE, T, F are logicals
@@ -260,7 +265,11 @@ is.logical(x)
 "a" < "b"  # works on characters as well
 ```
 
+
 # Vectors
+
+
+## Vectors
 - A `vector` is a collection of elements, all of the same type.
 
 - We will learn about:
@@ -272,19 +281,358 @@ is.logical(x)
         - Where functiions are applied element-wise to vectors.
     
 
-# Week 2
-- Dates and time series
-- Graphics in R
-- Functions
-- Control statements
+## Vectors and Assignment
+- Assigning values to variables can be done with `<-`
+- Create vectors of numbers using the function `c()`
+```{r}
+myvector <- c(1,2,3,4)
+samevector <- 1:4
+vectorsubset <- myvector[1:3]
+vectorsubset
+```
 
-# Week 3
-- data munging
+## c() function
+- `c()`, which stands for concatenate is a very flexible function.
+```{r}
+myvec1 <- 2:4
+myvec2 <- c(1,3,5,myvec1)
+myvec2
+```
 
-# Week 4
-- optimization
+## Accesing elements of vectors
+- Elements can be accessed using `[]`
+```{r}
+myvec <- c(2,4,6,8)
+myvec[4]
+myvec[c(1,3)]
+```
 
-# Week 5
-- Simulation
-- Using C/C++ in R
+## Length
+- `length()` returns the vector length
+```{r}
+myvec <- 1:23
+length(myvec)
+```
 
+## Recycling
+- Vectors are recycled when an operation acts elementwise
+- Be careful with and aware of this behavior!
+- In some cases it is useful, others confusing
+```{r}
+vec1 <- 1
+vec2 <- 1:4
+vec3 <- 1:2
+vec2+vec1
+vec2+vec3
+```
+
+## `seq` and `rep`
+- Useful functions for generating vectors
+- See `?seq` and `?rep` for details
+```{r}
+myvec1 <- seq(1,10,2)
+myvec1
+myvec2 <- rep(c(1,2),3)
+myvec2
+rep(c(1,2), each=2)
+```
+
+## NULL and NA
+- `NULL` is the non-existent value in R
+- `NA` is the missing place hold
+```{r}
+myvec1 <- 5:8
+myvec1[2] <- NA
+myvec1
+myvec2 <- NULL
+length(myvec2)
+```
+
+
+## Filtering (1)
+- Select subsets using vectors of logicals
+
+```{r}
+vec1 <- 1:5
+vec2 <- c(TRUE,FALSE,TRUE,FALSE,TRUE)
+vec1[vec2]
+```
+
+
+## Filtering (2)
+
+- Select subsets using vectors of logical
+
+```{r}
+vec1 <- 1:6
+vec2 <- vec1 > 3
+vec2
+vec1[vec2]
+vec1[vec1>3]
+```
+
+
+## Assigning to filter
+
+- You can assign to the subsets
+
+```{r}
+vec1 <- 1:6
+vec1[vec1<2] <- NA
+vec1
+```
+
+
+## Functions on vectors
+
+- Functions typically operate on vectors
+```{r}
+x <- 1:1000
+mean(x)
+```
+
+
+## names
+
+- You can give names to elements of vectors
+```{r}
+myvec <- 1:3
+names(myvec) <- c("A","B","C")
+myvec["B"]
+```
+
+
+# Matrices
+
+## Intro
+- Matrices are vectors with a number of rows and number of columns attribute
+```{r}
+myvec <- 1:10
+mymat <- matrix(myvec, nrow=2, ncol=5)
+mymat
+mymat[1,3]
+```
+
+
+## Matrix operations
+
+- Many matrix operations are surrounded by `%` signs
+
+```{r}
+mymat1 <- matrix(1:4, nrow=2)
+mymat2 <- matrix(5:8, nrow=2)
+mymat1 %*% mymat2
+mymat1 + mymat2
+```
+
+
+## `apply`
+
+- `apply` allows you to apply a function across a dimension of a matrix
+- The third argument is a function!
+
+```{r}
+mymat1 <- matrix(1:10, nrow=2)
+# mean across rows
+apply(mymat,1,mean)
+```
+
+
+## `cbind` and `rbind`
+- Column bind and Row bind
+```{r}
+mymat1 <- matrix(1:4,nrow=2)
+mymat2 <- matrix(6:9,nrow=2)
+mymat3 <- matrix(10:11,ncol=2)
+cbind(mymat1,mymat2)
+rbind(mymat1,mymat3)
+```
+
+
+# Lists
+
+## Intro
+- Lists are where you really start to see the advantages of R as a statistics and data manipulation language
+```{r}
+element1 <- 1:5
+element2 <- matrix(1:6,nrow=3)
+mylist <- list(el1=element1,el2=element2)
+mylist[["el1"]]
+mylist[["el2"]]
+```
+
+
+## Subsetting lists
+- Subsets of lists are with single `[]`
+```{r}
+mylist <- list(A=1,B=2,C=3,D=4)
+# this returns a list because of the single []
+mylist[c(1,3)]
+```
+
+
+## lapply
+
+- `lapply` implicitly loops over each list element and applies a function
+```{r}
+mylist <- list(A=1:10,B=2:17,C=745:791)
+lapply(mylist,mean)
+```
+
+
+## lapply example
+ 
+```{r}
+g <- c("M","F","F","I","M","M","F")
+lapply(c("M","F","I"),function(gender) which(g==gender))
+```
+
+# Data Frames
+
+## Intro
+- In my mind, `data.frame` is the core data type in R
+- The nicest part is that they can hold different types
+- Each column must be the same length
+```{r}
+dat1 <- 1:4
+dat2 <- rep(c("A","B"),each=2)
+myframe <- data.frame(col1=dat1,col2=dat2)
+myframe
+```
+
+
+## Subsets
+
+- Subsetting is just like a matrix
+
+```{r}
+myframe[1,2]
+myframe[1,]
+myframe[,2]
+```
+
+
+## Reading in data
+- Reading in data typically gives you a `data.frame`
+- `read.table` is the basic function to read in tabular data
+- `read.csv` is a special cast of `read.table`
+- As usual see `?read.table`
+- Often you want to set `stringsAsFactors = FALSE`
+
+## Adding columns
+
+```{r}
+dat1 <- 1:4
+dat2 <- rep(c("A","B"),each=2)
+myframe <- data.frame(col1=dat1,col2=dat2)
+myframe$col3 <- 5:8
+myframe
+```
+
+
+## names
+- column names in data.frames are specificed by `names()`
+- this is because data.frames are actually lists with special attributes
+- that means that the usual list functions work on data.frames
+- lapply, etc
+
+
+
+## Long example
+ 
+
+```{r, eval=FALSE}
+all2006 <- read.csv("2006.csv",header=TRUE,as.is=TRUE)
+
+# exclude hourly-wagers
+all2006 <- all2006[all2006$Wage_Per=="Year", ]
+
+# exclude weird cases
+all2006 <- all2006[all2006$Wage_Offered_From > 20000,]
+
+all2006$rat <- all2006$Wage_Offered_From 
+                  / all2006$Prevailing_Wage_Amount
+
+se2006 <- all2006[grep("Software Engineer", all2006),]
+```
+
+
+# Control Statements
+
+## For loops (1)
+
+```{r}
+x <- c(1:5)
+y <- NULL
+for(i in 1:length(x)) {
+   y[i] <- x[i] + 2
+}
+y
+```
+
+
+## For loops (2)
+- or another nice way to make a for loop
+
+```{r}
+x <- c(1:3)
+for(element in x) {
+   print(element + 2)
+}
+```
+
+
+## While loops
+ 
+```{r}
+x <- c(1:5)
+y <- NULL
+i <- 1
+while(i<=length(x)) {
+   y[i] <- x[i] + 2
+   i <- i+1
+}
+y
+```
+
+
+## Conditional Statements
+ 
+```{r}
+x <- -10
+myabs <- x
+if(x<0) {
+    myabs <- -x
+} 
+myabs
+```
+
+
+# Functions
+
+## Function definitions
+
+- Note that the last value evaluated is what is returned by the function
+
+```{r}
+myfunc <- function(x) x^2
+myfunc(10)
+```
+
+## Scope rules
+
+- Variables defined inside a function are local to that function
+
+```{r}
+myfunc <- function(x) {
+    N <- 10
+    N*x^2
+}
+myfunc(10)
+# You can't access N out here
+```
+
+## Lab 1
+\begin{center}
+\Large Let's work on Lab 1.
+\end{center}
