@@ -17,30 +17,17 @@
 \usepackage{hyperref}
 \tolerance=1000
 \usepackage[hmargin=1in, vmargin = 1in]{geometry}
-\author{Robert J. Richmond}
-\date{November 30, 2015}
-\title{2015 MFE Programming Workshop Lab 4}
+\author{Brett R. Dunn}
+\date{November 21, 2015}
+\title{2016 R MFE Programming Workshop Lab 4}
 \hypersetup{
   pdfkeywords={},
   pdfsubject={},
   pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
-
-\section{Black-Scholes Formula}
-\label{sec-1}
-\begin{itemize}
-\item Recall the lab from class 1. Recreate the function that you wrote for
-the evaluation of the Black-Scholes option price, but this time use
-Matlab. Evaluate the option prices in Lab 1, including those on the
-grid. \textbf{Challenge:} Can you vectorize the code?
-
-\item The file \emph{optionsdata.csv} contains the parameters for various
-options. Read in this file and compute the Black-Scholes price for
-these options. Append a column to the dataset and output the results
-to its own csv file.
-\end{itemize}
 
 \section{Monte Carlo Option Pricing}
 \label{sec-2}
