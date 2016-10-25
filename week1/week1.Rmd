@@ -498,7 +498,6 @@ mymat1 %*% mymat2  # matrix multiplication
 mymat1 + mymat2
 ```
 
-
 ## Applying Functions to Rows and Columns
 - `apply` allows you to apply a function across a dimension of a matrix.
 - The third argument is a function!
@@ -571,7 +570,6 @@ mylist <- list(A=1:10,B=2:17,C=745:791)
 lapply(mylist,mean)
 ```
 
-
 ## An Example of `lapply`
 - From `?lapply`: `lapply(X, FUN, ...)` returns a list of the same length as X, each element of which is the result of applying FUN to the corresponding element of X.
 ```{r}
@@ -580,7 +578,6 @@ lapply(c("A","B"), function(letter) which(l==letter))
 ```
 
 # Data Frames
-
 ## `data.frame`s
 - The `data.frame` is one of the most useful features in R.
 - A `data.frame` is like a `matrix` with a two-dimensional rows-and-columns structure.
@@ -715,7 +712,7 @@ y
 x <- -10
 myabs <- x
 if(x < 0) {
-    myabs <- -x
+  myabs <- -x
 } 
 myabs
 ```
@@ -736,7 +733,6 @@ myfunc(10)
 ## Scope Rules for Functions
 
 - Variables defined inside a function are local to that function.
-
 ```{r}
 myfunc <- function(x) {
     N <- 10
