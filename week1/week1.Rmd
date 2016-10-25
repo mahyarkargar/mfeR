@@ -27,8 +27,12 @@ slide_level: 2
 - R is object oriented.
     - Everything is an object and functions operate differently when passed different types of objects.
 - R is functional.
+    - Everything that happens in R is a function call.
     - You write fewer loops.
     - You write cleaner code.
+- R is extendable.
+    - Interfaces to other software are part of R.
+
 
 ## R vs C++
  
@@ -456,7 +460,7 @@ log(x)[998:1001]
 # Matrices
 
 ## Creating Matrices
-- Matrices are vectors with a numberof rows and number of columns attribute.
+- Matrices are vectors with a number of rows and number of columns attribute.
 ```{r}
 myvec <- 1:10
 mymat <- matrix(myvec, nrow=2, ncol=5, byrow = FALSE)
