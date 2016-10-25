@@ -48,8 +48,6 @@
   pdfsubject={},
   pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
-
 \maketitle
 % tikz style for highlighting rows
 \tikzset{hl/.style={
