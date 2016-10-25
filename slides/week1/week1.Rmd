@@ -1,6 +1,6 @@
 ---
 title: "MFE R Programming Workshop"
-author: "Brett Dunn"
+author: "Brett R. Dunn"
 date: "Fall 2016"
 output:
   beamer_presentation:
@@ -202,6 +202,21 @@ slide_level: 2
 - If two packages have the same function name use two colons:
     -`package1::func` or `package2::func`
 
+## Getting Help in R
+
+- To get help on a function, use `?`.
+- The `example` function runs the examples contained in the help file.
+- To run a search through R's documentation, use `??`.
+- To get help on a package, type `help(package="packageName")`
+```{r, eval=FALSE}
+?seq  # pulls up the help page
+example(seq)  # runs the examples in R
+??"normal distibution"  # runs a search
+help(package = "xts")  # gets help on the xts package
+?'+'  # gets help on the + function
+```
+
+
 ## Variables
 - Unlike C++, R does not require variable types to be declared.
 - A variable can take on any data type.
@@ -209,11 +224,12 @@ slide_level: 2
 - Variable assignment is done with  `<-`.
     - `=` works, but there are reasons to prefer `<-`.
 - We can remove variables (e.g. to free up memory) with the `rm` function. `gc()` runs garbage collection.
-    ```{r}
-    x <- 2  # x is a pointer
-    x  # the same output as print(x)
-    rm(x)  # removes x
-    ```
+
+```{r}
+x <- 2  # x is a pointer
+x  # the same output as print(x)
+rm(x)  # removes x
+```
 
 ## Data Types
 - There are many different data types in R.
@@ -282,123 +298,152 @@ is.logical(x)
     
 
 ## Vectors and Assignment
-- Assigning values to variables can be done with `<-`
-- Create vectors of numbers using the function `c()`
+- Assigning values to variables can be done with `<-`.
+- Often, we create vectors using the `c()` function.
+    - The "c" stands for combine because the arguments into a vector.
+    
 ```{r}
-myvector <- c(1,2,3,4)
-samevector <- 1:4
-vectorsubset <- myvector[1:3]
-vectorsubset
+x <- c(1, 2, 3, 4)
+x
+y <- c(x, 5, 6)
+y
 ```
 
-## c() function
-- `c()`, which stands for concatenate is a very flexible function.
-```{r}
-myvec1 <- 2:4
-myvec2 <- c(1,3,5,myvec1)
-myvec2
-```
-
-## Accesing elements of vectors
-- Elements can be accessed using `[]`
-```{r}
-myvec <- c(2,4,6,8)
-myvec[4]
-myvec[c(1,3)]
-```
-
-## Length
-- `length()` returns the vector length
-```{r}
-myvec <- 1:23
-length(myvec)
-```
-
-## Recycling
-- Vectors are recycled when an operation acts element-wise
-- Be careful with and aware of this behavior!
-- In some cases it is useful, others confusing
-```{r}
-vec1 <- 1
-vec2 <- 1:4
-vec3 <- 1:2
-vec2+vec1
-vec2+vec3
-```
-
-## `seq` and `rep`
-- Useful functions for generating vectors
+## Creating Vectors with `seq` and `rep`
+- Both `seq` and `rep` are useful functions for generating vectors.
 - See `?seq` and `?rep` for details
+- `seq` is also useful in loops
+- `1:10` is the same as `seq(1,10,1)`
 ```{r}
-myvec1 <- seq(1,10,2)
-myvec1
-myvec2 <- rep(c(1,2),3)
-myvec2
+x <- seq(from = 1, to = 10, by = 2) 
+x
+y <- rep(c(1, 2), times = 3)
+y
 rep(c(1,2), each=2)
 ```
 
+## Obtaining the Length of a Vector
+- `length()` returns the vector length
+```{r}
+x <- c(TRUE, FALSE, TRUE, FALSE)
+length(x)
+x <- c()  # x is NULL
+1:length(x)  # that could mess you up in a for loop
+seq(x) # a safe way to loop through a vector
+```
+
+## Accessing Elements of vectors
+- Elements can be accessed using `[]`
+    - Help on the `[` function can be found by typing `?'['`
+- Unlike C/C++, R indexing starts at 1, not 0.
+- The `[` function can take a vector as an arguments.
+```{r}
+x <- c("a", "b", "c", "d")
+x[1]  # access the first element
+x[c(1, 3)]  # access elements 1 and 3
+x[c(TRUE, FALSE, TRUE, FALSE)]  # second way
+```
+
 ## NULL and NA
-- `NULL` is the non-existent value in R
-- `NA` is the missing place hold
+- `NULL` is the non-existent value in R.
+- `NA` is the missing place holder.
 ```{r}
-myvec1 <- 5:8
-myvec1[2] <- NA
-myvec1
-myvec2 <- NULL
-length(myvec2)
+x <- 5:8
+x[2] <- NA
+x
+y <- NULL
+length(y)
 ```
 
-
-## Filtering (1)
-- Select subsets using vectors of logicals
-
+## Names of Vector Elements
+- You can give names to elements of vectors, and you can access elements by their name.
 ```{r}
-vec1 <- 1:5
-vec2 <- c(TRUE,FALSE,TRUE,FALSE,TRUE)
-vec1[vec2]
+x <- 1:3
+names(x) <- c("A","B","C")
+x["B"]
 ```
 
+## Recycling
+- When applying an operation to two vectors that requires them to be the same length, R automatically *recycles* the shorter one, until it is long enough to match the longer one.
+- Be careful with and aware of this behavior!
+- In some cases it is useful, others confusing.
+```{r}
+# the shorter vector will be recycled
+c(2, 4, 6) + c(1, 1, 1, 2, 2, 2)
+# this is the same as
+rep(c(2, 4, 6), 2) + c(1, 1, 1, 2, 2, 2)
+```
+
+## Logical Operators
+- R has several logical operations that act on vectors.
+- `!`, `==`, `!=`, `&`, `&&`, `|`, `||`, `xor()`, `any()`, `all()`, `>`, `>=`, `<=`, `<`
+```{r}
+x <- c(TRUE,FALSE,TRUE)
+y <- c(TRUE,FALSE,FALSE)
+x == y
+!x
+```
+
+## Logical Operations (2)
+- `&&`, `||`, `any()`, and `all()` return a length-one vector.
+```{r}
+x <- c(TRUE,FALSE,TRUE)
+y <- c(TRUE,FALSE,FALSE)
+x && y
+x & y
+```
+
+## Filtering
+- We select subsets of vectors with vectors of logicals.
+```{r}
+x <- 1:5
+y <- c(TRUE,FALSE,TRUE,FALSE,TRUE)
+x[y]
+```
 
 ## Filtering (2)
-
-- Select subsets using vectors of logical
-
+- Filtering amounts to generating filtering indices (i.e. vectors of logicals).
 ```{r}
-vec1 <- 1:6
-vec2 <- vec1 > 3
-vec2
-vec1[vec2]
-vec1[vec1>3]
+x <- c(5, 2, -3, 8)
+idx <- x*x > 8  # same as ">"(x*x, 8) - the 8 is recycled!
+idx
 ```
-
 
 ## Assigning to filter
-
-- You can assign to the subsets
-
+- You can assign to the subsets.
+    - Change elements that meet certain criteria.
 ```{r}
-vec1 <- 1:6
-vec1[vec1<2] <- NA
-vec1
+x <- 1:6
+x[x < 2] <- NA
+x
 ```
 
-
-## Functions on vectors
-
-- Functions typically operate on vectors
+## Filtering with `subset()`
+- The subset function filters and removes any `NA`s.
 ```{r}
-x <- 1:1000
+x <- c(3, 1:5, NA, 79)
+x
+x[x > 4]
+subset(x, x > 4)
+```
+
+## The selection function `which()`
+- `which()` gives us the position in a vector where a condition occurs.
+```{r}
+x <- c(3, 1:5, NA, 79)
+x
+x[x > 4]
+which(x > 4)
+```
+
+## Vectorization: Functions on Vectors
+- R functions typically operate on vectors.
+- Often, there is an argument to ignore missing data.
+```{r}
+x <- c(1:1000, NA)
 mean(x)
-```
-
-
-## names
-
-- You can give names to elements of vectors
-```{r}
-myvec <- 1:3
-names(myvec) <- c("A","B","C")
-myvec["B"]
+mean(x, na.rm = TRUE)
+log(x)[998:1001]
 ```
 
 
@@ -516,7 +561,7 @@ myframe[,2]
 ## Reading in data
 - Reading in data typically gives you a `data.frame`
 - `read.table` is the basic function to read in tabular data
-- `read.csv` is a special cast of `read.table`
+- `read.csv` is a special case of `read.table`
 - As usual see `?read.table`
 - Often you want to set `stringsAsFactors = FALSE`
 
