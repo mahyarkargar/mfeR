@@ -479,7 +479,7 @@ mymat[2:3, c(1, 4, 5)]
 ## Filtering Matrices
 - Filtering can be done on a single column or a single row, otherwise the filter returns a vector.
 ```{r}
-myvec <- 1:10
+myvec <- c(1, 1, 3, 1, 5, 1, 7, 1, 9, 1)
 mymat <- matrix(myvec, nrow=2, ncol=5, byrow = FALSE)
 mymat
 mymat[, mymat[1, ] > 4]
